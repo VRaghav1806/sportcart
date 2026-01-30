@@ -22,7 +22,7 @@ function CartItem({ item, onUpdateQuantity, onRemove }) {
                 <span className="cart-item-category badge badge-primary">
                     {item.product.category}
                 </span>
-                <p className="cart-item-price">${item.price.toFixed(2)} each</p>
+                <p className="cart-item-price">${(item.price || 0).toFixed(2)} each</p>
             </div>
 
             <div className="cart-item-actions">
@@ -45,7 +45,7 @@ function CartItem({ item, onUpdateQuantity, onRemove }) {
                 </div>
 
                 <p className="cart-item-total">
-                    ${(item.price * item.quantity).toFixed(2)}
+                    ${((item.price || 0) * item.quantity).toFixed(2)}
                 </p>
 
                 <button

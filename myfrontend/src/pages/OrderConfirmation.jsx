@@ -125,7 +125,7 @@ function OrderConfirmation() {
                                             <span className="item-quantity">Qty: {item.quantity}</span>
                                         </div>
                                         <span className="item-price">
-                                            ${(item.price * item.quantity).toFixed(2)}
+                                            ${((item.price || 0) * item.quantity).toFixed(2)}
                                         </span>
                                     </div>
                                 ))}
@@ -137,22 +137,22 @@ function OrderConfirmation() {
                         <div className="order-summary">
                             <div className="summary-row">
                                 <span>Subtotal</span>
-                                <span>${order.subtotal.toFixed(2)}</span>
+                                <span>${(order.subtotal || 0).toFixed(2)}</span>
                             </div>
                             <div className="summary-row">
                                 <span>Tax</span>
-                                <span>${order.tax.toFixed(2)}</span>
+                                <span>${(order.tax || 0).toFixed(2)}</span>
                             </div>
                             <div className="summary-row">
                                 <span>Shipping</span>
                                 <span>
-                                    {order.shipping === 0 ? 'FREE' : `$${order.shipping.toFixed(2)}`}
+                                    {order.shipping === 0 ? 'FREE' : `$${(order.shipping || 0).toFixed(2)}`}
                                 </span>
                             </div>
                             <div className="divider"></div>
                             <div className="summary-row total-row">
                                 <span>Total</span>
-                                <span className="total-amount">${order.total.toFixed(2)}</span>
+                                <span className="total-amount">${(order.total || 0).toFixed(2)}</span>
                             </div>
                         </div>
                     </div>

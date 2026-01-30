@@ -90,7 +90,7 @@ function ProductCard({ product, onDelete }) {
                 <div className="product-footer">
                     <div className="product-price">
                         <span className="price-currency">₹</span>
-                        <span className="price-amount">{product.price.toFixed(2)}</span>
+                        <span className="price-amount">{(product.price || 0).toFixed(2)}</span>
                     </div>
 
                     <button

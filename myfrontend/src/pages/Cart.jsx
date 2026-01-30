@@ -72,12 +72,12 @@ function Cart() {
 
                                 <div className="summary-row">
                                     <span>Subtotal</span>
-                                    <span>₹{subtotal.toFixed(2)}</span>
+                                    <span>₹{(subtotal || 0).toFixed(2)}</span>
                                 </div>
 
                                 <div className="summary-row">
                                     <span>Tax (10%)</span>
-                                    <span>₹{tax.toFixed(2)}</span>
+                                    <span>₹{(tax || 0).toFixed(2)}</span>
                                 </div>
 
                                 <div className="summary-row">
@@ -86,7 +86,7 @@ function Cart() {
                                         {shipping === 0 ? (
                                             <span className="free-shipping">FREE</span>
                                         ) : (
-                                            `₹${shipping.toFixed(2)}`
+                                            `₹${(shipping || 0).toFixed(2)}`
                                         )}
                                     </span>
                                 </div>
@@ -101,7 +101,7 @@ function Cart() {
 
                                 <div className="summary-row summary-total">
                                     <span>Total</span>
-                                    <span className="total-amount">₹{total.toFixed(2)}</span>
+                                    <span className="total-amount">₹{(total || 0).toFixed(2)}</span>
                                 </div>
 
                                 <button

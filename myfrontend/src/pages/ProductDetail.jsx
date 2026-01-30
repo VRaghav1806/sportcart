@@ -93,7 +93,7 @@ function ProductDetail() {
                     </div>
 
                     <div className="product-price-section">
-                        <span className="price">₹{product.price.toFixed(2)}</span>
+                        <span className="price">₹{(product.price || 0).toFixed(2)}</span>
                         {product.stock > 0 ? (
                             <span className="stock-status in-stock">
                                 {product.stock < 10 ? `Only ${product.stock} left in stock` : 'In Stock'}

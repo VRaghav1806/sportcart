@@ -242,7 +242,7 @@ function Checkout() {
                                 className="btn btn-primary btn-large submit-btn"
                                 disabled={loading}
                             >
-                                {loading ? 'Processing...' : `Place Order - ₹${total.toFixed(2)}`}
+                                {loading ? 'Processing...' : `Place Order - ₹${(total || 0).toFixed(2)}`}
                             </button>
                         </form>
                     </div>
@@ -260,7 +260,7 @@ function Checkout() {
                                             <span className="item-quantity">× {item.quantity}</span>
                                         </div>
                                         <span className="item-price">
-                                            ₹{(item.price * item.quantity).toFixed(2)}
+                                            ₹{((item.price || 0) * item.quantity).toFixed(2)}
                                         </span>
                                     </div>
                                 ))}
@@ -270,24 +270,24 @@ function Checkout() {
 
                             <div className="summary-row">
                                 <span>Subtotal</span>
-                                <span>₹{subtotal.toFixed(2)}</span>
+                                <span>₹{(subtotal || 0).toFixed(2)}</span>
                             </div>
 
                             <div className="summary-row">
                                 <span>Tax</span>
-                                <span>₹{tax.toFixed(2)}</span>
+                                <span>₹{(tax || 0).toFixed(2)}</span>
                             </div>
 
                             <div className="summary-row">
                                 <span>Shipping</span>
-                                <span>{shipping === 0 ? 'FREE' : `₹${shipping.toFixed(2)}`}</span>
+                                <span>{shipping === 0 ? 'FREE' : `₹${(shipping || 0).toFixed(2)}`}</span>
                             </div>
 
                             <div className="summary-divider"></div>
 
                             <div className="summary-row summary-total">
                                 <span>Total</span>
-                                <span className="total-amount">₹{total.toFixed(2)}</span>
+                                <span className="total-amount">₹{(total || 0).toFixed(2)}</span>
                             </div>
                         </div>
                     </div>
