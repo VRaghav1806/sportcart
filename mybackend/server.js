@@ -50,6 +50,17 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', message: 'Sports Cart API is running' });
 });
 
+// Root route
+app.get('/', (req, res) => {
+    res.json({
+        message: 'Welcome to Sports Cart API',
+        endpoints: {
+            products: '/api/products',
+            health: '/api/health'
+        }
+    });
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error('🔥 Global Error Hook:', err);
