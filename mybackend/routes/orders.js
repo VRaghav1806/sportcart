@@ -3,6 +3,7 @@ const router = express.Router();
 const Order = require('../models/Order');
 const Cart = require('../models/Cart');
 const Product = require('../models/Product');
+const { sendAdminOrderNotification } = require('../services/emailService');
 
 // Create new order
 router.post('/', async (req, res) => {
@@ -55,6 +56,9 @@ router.post('/', async (req, res) => {
         });
 
         await order.save();
+
+        // Send admin notification (non-blocking)
+        sendAdminOrderNotification(order).catch(err => console.error('Email notification failed:', err));
 
         // Update product stock
         for (const item of cart.items) {
