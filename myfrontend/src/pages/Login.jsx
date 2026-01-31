@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { login } from '../utils/api';
+import { login, register } from '../utils/api';
 import { LogIn, User, ShieldCheck, Mail, Lock } from 'lucide-react';
 import './Login.css';
 
 function Login() {
     const [email, setEmail] = useState('');
+
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [role, setRole] = useState('user');
+    const [isLogin, setIsLogin] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState('');
 
@@ -23,7 +27,12 @@ function Login() {
         setError('');
 
         try {
-            const data = await login(email, password);
+            let data;
+            if (isLogin) {
+                data = await login(email, password);
+            } else {
+                data = await register(name, email, password, role);
+            }
             loginUser(data.user);
             navigate(from, { replace: true });
         } catch (err) {
@@ -51,8 +60,10 @@ function Login() {
                         <div className="login-icon">
                             <LogIn size={32} />
                         </div>
-                        <h1 className="login-title">Welcome Back</h1>
-                        <p className="login-subtitle">Login to your SportsCart account</p>
+                        <h1 className="login-title">{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
+                        <p className="login-subtitle">
+                            {isLogin ? 'Login to your SportsCart account' : 'Sign up to get started'}
+                        </p>
                     </div>
 
                     {error && (
@@ -62,6 +73,23 @@ function Login() {
                     )}
 
                     <form onSubmit={handleSubmit} className="login-form">
+                        {!isLogin && (
+                            <div className="form-group">
+                                <label htmlFor="name">Full Name</label>
+                                <div className="input-with-icon">
+                                    <User className="field-icon" size={18} />
+                                    <input
+                                        id="name"
+                                        type="text"
+                                        placeholder="Enter your full name"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        required={!isLogin}
+                                    />
+                                </div>
+                            </div>
+                        )}
+
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <div className="input-with-icon">
@@ -97,9 +125,22 @@ function Login() {
                             className={`btn btn-primary btn-full ${isSubmitting ? 'loading' : ''}`}
                             disabled={isSubmitting}
                         >
-                            {isSubmitting ? 'Logging in...' : 'Login'}
+                            {isSubmitting ? 'Processing...' : (isLogin ? 'Login' : 'Sign Up')}
                         </button>
                     </form>
+
+                    <div className="auth-toggle">
+                        <p>
+                            {isLogin ? "Don't have an account?" : "Already have an account?"}
+                            <button
+                                type="button"
+                                className="toggle-btn"
+                                onClick={() => setIsLogin(!isLogin)}
+                            >
+                                {isLogin ? 'Sign Up' : 'Login'}
+                            </button>
+                        </p>
+                    </div>
 
                     <div className="quick-login-divider">
                         <span>Or quick login as</span>

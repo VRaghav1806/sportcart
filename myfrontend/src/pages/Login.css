@@ -159,3 +159,54 @@
 .animate-shake {
     animation: shake 0.3s ease-in-out;
 }
+
+/* Sign Up Toggle */
+.auth-toggle {
+    text-align: center;
+    margin: 1.5rem 0;
+    color: var(--text-secondary);
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.toggle-btn:hover {
+    color: var(--color-secondary);
+    text-decoration: underline;
+}
+
+/* Role Selector */
+.role-selector {
+    display: flex;
+    gap: 1rem;
+    padding: 0.25rem;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.role-btn {
+    flex: 1;
+    padding: 0.6rem;
+    border: none;
+    background: none;
+    border-radius: 8px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.role-btn.active {
+    background: white;
+    color: var(--color-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
