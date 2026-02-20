@@ -18,7 +18,10 @@ function Checkout() {
         state: '',
         zipCode: '',
         country: '',
-        paymentMethod: 'credit_card'
+        paymentMethod: 'credit_card',
+        cardNumber: '',
+        expiryDate: '',
+        cvv: ''
     });
 
     const subtotal = cart?.totalAmount || 0;
@@ -235,6 +238,68 @@ function Checkout() {
                                         </label>
                                     ))}
                                 </div>
+
+                                {/* Credit/Debit Card Details */}
+                                {(formData.paymentMethod === 'credit_card' || formData.paymentMethod === 'debit_card') && (
+                                    <div className="card-details-form">
+                                        <div className="form-group full-width">
+                                            <label htmlFor="cardNumber">Card Number *</label>
+                                            <input
+                                                type="text"
+                                                id="cardNumber"
+                                                name="cardNumber"
+                                                className="input"
+                                                placeholder="0000 0000 0000 0000"
+                                                value={formData.cardNumber}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="form-grid">
+                                            <div className="form-group">
+                                                <label htmlFor="expiryDate">Expiry Date *</label>
+                                                <input
+                                                    type="text"
+                                                    id="expiryDate"
+                                                    name="expiryDate"
+                                                    className="input"
+                                                    placeholder="MM/YY"
+                                                    value={formData.expiryDate}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="cvv">CVV *</label>
+                                                <input
+                                                    type="password"
+                                                    id="cvv"
+                                                    name="cvv"
+                                                    className="input"
+                                                    placeholder="123"
+                                                    value={formData.cvv}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* PayPal QR Code */}
+                                {formData.paymentMethod === 'paypal' && (
+                                    <div className="paypal-qr-section">
+                                        <p className="qr-instruction">Scan this QR code to pay with PayPal</p>
+                                        <div className="qr-code-container">
+                                            <img
+                                                src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.paypal.com/payme/dummy"
+                                                alt="PayPal QR Code"
+                                                className="qr-code-image"
+                                            />
+                                        </div>
+                                        <p className="qr-note">The order will be processed after payment confirmation.</p>
+                                    </div>
+                                )}
                             </div>
 
                             <button

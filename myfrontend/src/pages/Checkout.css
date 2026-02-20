@@ -73,6 +73,51 @@
     gap: var(--spacing-md);
 }
 
+.card-details-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+/* PayPal QR Code Styles */
+.paypal-qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.qr-instruction {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.qr-code-container {
+    padding: var(--spacing-md);
+    background: white;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.qr-code-image {
+    width: 200px;
+    height: 200px;
+    display: block;
+}
+
+.qr-note {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+}
+
 .payment-option {
     display: flex;
     align-items: center;
